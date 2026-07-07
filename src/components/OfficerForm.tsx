@@ -19,7 +19,7 @@ export default function OfficerForm({ initialOfficer, onSave, onCancel }: Office
   const [firstName, setFirstName] = useState(initialOfficer?.firstName || "");
   const [lastName, setLastName] = useState(initialOfficer?.lastName || "");
   const [position, setPosition] = useState(initialOfficer?.position || "นักเทคนิคการแพทย์ชำนาญการ");
-  const [workplace, setWorkplace] = useState(initialOfficer?.workplace || "สมเด็จพระยุพราชเดชอุดม");
+  const [workplace, setWorkplace] = useState(initialOfficer?.workplace || "โรงพยาบาลสมเด็จพระยุพราชเดชอุดม");
   const [province, setProvince] = useState(initialOfficer?.province || "อุบลราชธานี");
   const [gisLevel, setGisLevel] = useState(initialOfficer?.gisLevel || "s");
   
@@ -45,7 +45,7 @@ export default function OfficerForm({ initialOfficer, onSave, onCancel }: Office
     initialOfficer?.workHistories || [
       {
         id: "default-hist",
-        workplace: "สมเด็จพระยุพราชเดชอุดม",
+        workplace: "โรงพยาบาลสมเด็จพระยุพราชเดชอุดม",
         province: "อุบลราชธานี",
         startDate: "2004-05-11",
         endDate: "current"

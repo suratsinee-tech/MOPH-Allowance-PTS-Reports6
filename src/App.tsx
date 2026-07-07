@@ -38,7 +38,7 @@ const SAMPLE_OFFICERS: Officer[] = [
     firstName: "ธันญ์นวิชญ์",
     lastName: "คำทา",
     position: "นักเทคนิคการแพทย์ชำนาญการ",
-    workplace: "สมเด็จพระยุพราชเดชอุดม",
+    workplace: "โรงพยาบาลสมเด็จพระยุพราชเดชอุดม",
     province: "อุบลราชธานี",
     gisLevel: "s",
     address: {
@@ -55,7 +55,7 @@ const SAMPLE_OFFICERS: Officer[] = [
     workHistories: [
       {
         id: "hist-1",
-        workplace: "สมเด็จพระยุพราชเดชอุดม",
+        workplace: "โรงพยาบาลสมเด็จพระยุพราชเดชอุดม",
         province: "อุบลราชธานี",
         startDate: "2004-05-11", // 11 พฤษภาคม 2547
         endDate: "current"
