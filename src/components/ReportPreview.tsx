@@ -470,16 +470,16 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
           {/* PAGE 1: ใบขอรับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่าย (พ.ศ.2566) */}
           {/* ========================================================== */}
           {(activeFormTab === "all" || activeFormTab === "allowance") && (
-            <div className="print-page text-black leading-[1.7] text-[15px]">
+            <div className="print-page text-black leading-[1.45] text-[14.5px]">
               {/* Document Header */}
-              <div className="text-center space-y-0.5 mb-3.5">
-                <h2 className="text-[16px] font-bold">ใบขอรับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่ายสำหรับเจ้าหน้าที่</h2>
-                <h2 className="text-[16px] font-bold">ที่ปฏิบัติงานในหน่วยบริการสังกัดกระทรวงสาธารณสุข</h2>
-                <h2 className="text-[16px] font-bold">พ.ศ.2566</h2>
+              <div className="text-center space-y-0.5 mb-2">
+                <h2 className="text-[15.5px] font-bold">ใบขอรับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่ายสำหรับเจ้าหน้าที่</h2>
+                <h2 className="text-[15.5px] font-bold">ที่ปฏิบัติงานในหน่วยบริการสังกัดกระทรวงสาธารณสุข</h2>
+                <h2 className="text-[15.5px] font-bold">พ.ศ.2566</h2>
               </div>
  
               {/* Monthly line */}
-              <div className="flex justify-center items-center gap-1.5 mb-3.5">
+              <div className="flex justify-center items-center gap-1.5 mb-2.5">
                 <span>ประจำเดือน</span>
                 <span className="font-semibold border-b border-dotted border-black px-3 min-w-[90px] text-center">{formattedMonth}</span>
                 <span>พ.ศ.</span>
@@ -487,7 +487,7 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               </div>
  
               {/* Personal info paragraph */}
-              <div className="space-y-3 text-justify">
+              <div className="space-y-1.5 text-justify">
                 <p className="indent-8">
                   ข้าพเจ้า ชื่อ <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName}</span>
                   นามสกุล <span className="font-semibold border-b border-dotted border-black px-2">{lastName}</span>
@@ -507,17 +507,17 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                   (<span className="font-semibold border-b border-dotted border-black px-2">{bahtText(allowanceRate)}</span>)
                 </p>
  
-                <p className="font-bold pt-1">
+                <p className="font-bold pt-0.5">
                   โดยมีรายละเอียดการปฏิบัติงาน ดังต่อไปนี้ (เฉพาะสายแพทย์ตอบข้อ 1 ด้วย)
                 </p>
               </div>
 
               {/* Timeline listings (mimicking the 1-6 rules) */}
-              <div className="space-y-3.5 mt-3.5 text-justify text-[14px] leading-[1.7]">
+              <div className="space-y-1.5 mt-2 text-justify text-[13.5px] leading-[1.4]">
                 {/* Rule: Internship (Doctors) - Unnumbered */}
                 <div className="text-black pl-0">
                   เริ่มฝึกเพิ่มพูนทักษะที่
-                  <div className="pl-6 space-y-1 mt-0.5 text-black">
+                  <div className="pl-6 space-y-0.5 mt-0.5 text-black">
                     <p>
                       รพช. <span className="border-b border-dotted border-black inline-block w-[140px]">&nbsp;</span> 
                       จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px]">&nbsp;</span> 
@@ -564,25 +564,25 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               </div>
 
               {/* Total Summary */}
-              <div className="mt-4 pt-1.5 border-t border-slate-300">
+              <div className="mt-2 pt-1 border-t border-slate-300">
                 <p className="font-semibold">
                   รวมทั้งสิ้น <span className="border-b border-dotted border-black px-3">{num(customYears)}</span> ปี 
                   <span className="border-b border-dotted border-black px-3">{num(customMonths)}</span> เดือน 
                   <span className="border-b border-dotted border-black px-3">{num(customDays || " - ")}</span> วัน
                 </p>
-                <p className="text-[12.5px] text-black mt-0.5 text-justify leading-snug">
+                <p className="text-[12px] text-black mt-0.5 text-justify leading-snug">
                   (กรณีหน่วยงานเรียกเงินคืน ข้าพเจ้ายินดีชดใช้คืนตามจำนวนเงินที่ได้รับมา โดยไม่มีเงื่อนไขใดๆภายใน 15 วัน หลังจากได้รับหนังสือแจ้งจากหน่วยงาน)
                 </p>
               </div>
 
               {/* Signature area */}
-              <div className="mt-5 text-center space-y-2">
-                <p>ข้าพเจ้าขอรับรองว่าข้อมูลดังกล่าวเป็นความจริงทุกประการ</p>
+              <div className="mt-2 text-center space-y-1">
+                <p className="text-[13.5px]">ข้าพเจ้าขอรับรองว่าข้อมูลดังกล่าวเป็นความจริงทุกประการ</p>
                 
-                <div className="w-[280px] ml-auto space-y-0.5 mt-3">
+                <div className="w-[300px] ml-auto space-y-0.5 mt-1">
                   <p className="border-b border-dotted border-black pb-0.5 text-black">&nbsp;</p>
-                  <p className="font-semibold">({title} {firstName} {lastName})</p>
-                  <p className="text-[13px] text-black">ตำแหน่ง {position}</p>
+                  <p className="font-semibold whitespace-nowrap">({title} {firstName} {lastName})</p>
+                  <p className="text-[13px] text-black whitespace-nowrap">ตำแหน่ง {position}</p>
                 </div>
               </div>
             </div>
