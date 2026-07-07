@@ -511,23 +511,36 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                   โดยมีรายละเอียดการปฏิบัติงาน ดังต่อไปนี้ (เฉพาะสายแพทย์ตอบข้อ 1 ด้วย)
                 </p>
               </div>
- 
+
               {/* Timeline listings (mimicking the 1-6 rules) */}
               <div className="space-y-3.5 mt-3.5 text-justify text-[14px] leading-[1.7]">
-                {/* Rule 1: Internship (Doctors) */}
-                <div className="pl-6 relative">
-                  <span className="absolute left-0 top-0 font-semibold">1.</span>
+                {/* Rule: Internship (Doctors) - Unnumbered */}
+                <div className="text-black pl-0">
                   เริ่มฝึกเพิ่มพูนทักษะที่
-                  <div className="pl-4 space-y-0.5 mt-0.5 text-black">
-                    <p>รพช. <span className="border-b border-dotted border-black inline-block w-[110px] text-center">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[100px] text-center">........................</span> ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span></p>
-                    <p>รพท./รพศ. <span className="border-b border-dotted border-black inline-block w-[100px] text-center">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[100px] text-center">........................</span> ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span></p>
-                    <p>รวม <span className="border-b border-dotted border-black inline-block w-[30px] text-center">.....</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px] text-center">.....</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px] text-center">.....</span> วัน (กรณีนี้ให้นับการฝึกที่ รพท./รพศ. เป็นอายุราชการได้)</p>
+                  <div className="pl-6 space-y-1 mt-0.5 text-black">
+                    <p>
+                      รพช. <span className="border-b border-dotted border-black inline-block w-[140px]">&nbsp;</span> 
+                      จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px]">&nbsp;</span> 
+                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span> 
+                      ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span>
+                    </p>
+                    <p>
+                      รพท./รพศ. <span className="border-b border-dotted border-black inline-block w-[130px]">&nbsp;</span> 
+                      จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px]">&nbsp;</span> 
+                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span> 
+                      ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span>
+                    </p>
+                    <p>
+                      รวม <span className="border-b border-dotted border-black inline-block w-[40px] text-center">&nbsp;</span> ปี 
+                      <span className="border-b border-dotted border-black inline-block w-[40px] text-center">&nbsp;</span> เดือน 
+                      <span className="border-b border-dotted border-black inline-block w-[40px] text-center">&nbsp;</span> วัน (กรณีนี้ให้นับการฝึกที่ รพท./รพศ. เป็นอายุราชการได้)
+                    </p>
                   </div>
                 </div>
  
-                {/* Rule 2: Primary workspace */}
+                {/* Rule 1: Primary workspace */}
                 <div className="pl-6 relative">
-                  <span className="absolute left-0 top-0 font-semibold">2.</span>
+                  <span className="absolute left-0 top-0 font-semibold">1.</span>
                   ปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-1.5">{workplace}</span> จังหวัด <span className="font-semibold border-b border-dotted border-black px-1.5">{province}</span>
                   <div className="mt-0.5">
                     ตั้งแต่วันที่ <span className="font-semibold border-b border-dotted border-black px-1.5">{num(officer.workHistories[0] ? officer.workHistories[0].startDate.split("-")[2] : "11")} {THAI_MONTHS[officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[1]) : 5]} {num(officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[0]) + 543 : 2547)}</span>
@@ -538,13 +551,13 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                   </div>
                 </div>
  
-                {/* Rules 3 - 6: Left empty as placeholder underlines just like the standard format */}
-                {[3, 4, 5, 6].map((numVal) => (
+                {/* Rules 2 - 5: Left empty as placeholder underlines just like the standard format */}
+                {[2, 3, 4, 5].map((numVal) => (
                   <div key={numVal} className="pl-6 relative text-black">
                     <span className="absolute left-0 top-0">{numVal}.</span>
-                    ปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="border-b border-dotted border-black inline-block w-[180px]">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[110px]">........................</span>
+                    ปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="border-b border-dotted border-black inline-block w-[180px]">&nbsp;</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span>
                     <div className="mt-0.5">
-                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">.......................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">.......................</span> รวม <span className="border-b border-dotted border-black inline-block w-[30px]">...</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px]">...</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px]">...</span> วัน
+                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span> รวม <span className="border-b border-dotted border-black inline-block w-[30px]">&nbsp;</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px]">&nbsp;</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px]">&nbsp;</span> วัน
                     </div>
                   </div>
                 ))}
@@ -567,7 +580,7 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                 <p>ข้าพเจ้าขอรับรองว่าข้อมูลดังกล่าวเป็นความจริงทุกประการ</p>
                 
                 <div className="w-[280px] ml-auto space-y-0.5 mt-3">
-                  <p className="border-b border-dotted border-black pb-0.5 text-black">..................................................</p>
+                  <p className="border-b border-dotted border-black pb-0.5 text-black">&nbsp;</p>
                   <p className="font-semibold">({title} {firstName} {lastName})</p>
                   <p className="text-[13px] text-black">ตำแหน่ง {position}</p>
                 </div>
