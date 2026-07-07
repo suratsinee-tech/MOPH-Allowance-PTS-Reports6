@@ -136,7 +136,7 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
             height: 297mm !important;
             min-height: 297mm !important;
             max-height: 297mm !important;
-            padding: 2.5cm 2cm 2.0cm 3cm !important; /* Left 3cm, Top 2.5cm, Right 2cm, Bottom 2cm (Thai gov standard) */
+            padding: 2.2cm 2cm 1.8cm 2.8cm !important; /* Left 2.8cm, Top 2.2cm, Right 2cm, Bottom 1.8cm */
             background: white !important;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
             border: 1px solid #e2e8f0 !important;
@@ -175,7 +175,7 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
             border: none !important;
             border-radius: 0 !important;
             margin: 0 !important;
-            padding: 2.5cm 2cm 2.0cm 3cm !important; /* Left 3cm, Top 2.5cm, Right 2cm, Bottom 2cm */
+            padding: 2.2cm 2cm 1.8cm 2.8cm !important; /* Left 2.8cm, Top 2.2cm, Right 2cm, Bottom 1.8cm */
             page-break-after: always !important;
             page-break-inside: avoid !important;
             width: 210mm !important;
@@ -463,71 +463,71 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
           {/* PAGE 1: ใบขอรับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่าย (พ.ศ.2566) */}
           {/* ========================================================== */}
           {(activeFormTab === "all" || activeFormTab === "allowance") && (
-            <div className="print-page text-black leading-[1.5] text-[16px]">
+            <div className="print-page text-black leading-[1.38] text-[15px]">
               {/* Document Header */}
-              <div className="text-center space-y-1 mb-6">
-                <h2 className="text-base font-bold">ใบขอรับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่ายสำหรับเจ้าหน้าที่</h2>
-                <h2 className="text-base font-bold">ที่ปฏิบัติงานในหน่วยบริการสังกัดกระทรวงสาธารณสุข</h2>
-                <h2 className="text-base font-bold">พ.ศ.2566</h2>
+              <div className="text-center space-y-0.5 mb-3.5">
+                <h2 className="text-[16px] font-bold">ใบขอรับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่ายสำหรับเจ้าหน้าที่</h2>
+                <h2 className="text-[16px] font-bold">ที่ปฏิบัติงานในหน่วยบริการสังกัดกระทรวงสาธารณสุข</h2>
+                <h2 className="text-[16px] font-bold">พ.ศ.2566</h2>
               </div>
 
               {/* Monthly line */}
-              <div className="flex justify-center items-center gap-1.5 mb-6">
+              <div className="flex justify-center items-center gap-1.5 mb-3.5">
                 <span>ประจำเดือน</span>
-                <span className="font-semibold underline decoration-dotted underline-offset-4 px-3 min-w-[80px] text-center">{formattedMonth}</span>
+                <span className="font-semibold border-b border-dotted border-black px-3 min-w-[90px] text-center">{formattedMonth}</span>
                 <span>พ.ศ.</span>
-                <span className="font-semibold underline decoration-dotted underline-offset-4 px-3 min-w-[60px] text-center">{num(selectedYearBE)}</span>
+                <span className="font-semibold border-b border-dotted border-black px-3 min-w-[65px] text-center">{num(selectedYearBE)}</span>
               </div>
 
               {/* Personal info paragraph */}
-              <div className="space-y-4 text-justify">
-                <p className="indent-10">
-                  ข้าพเจ้า ชื่อ <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{title} {firstName}</span>
-                  นามสกุล <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{lastName}</span>
-                  ตำแหน่ง <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{position}</span>
+              <div className="space-y-1.5 text-justify">
+                <p className="indent-8">
+                  ข้าพเจ้า ชื่อ <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName}</span>
+                  นามสกุล <span className="font-semibold border-b border-dotted border-black px-2">{lastName}</span>
+                  ตำแหน่ง <span className="font-semibold border-b border-dotted border-black px-2">{position}</span>
                 </p>
                 <p>
-                  ปัจจุบันปฏิบัติงานที่ รพศ/รพท./รพ./รพ.สต <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{workplace}</span>
-                  จังหวัด <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{province}</span>
-                  ระดับ GIS <span className="font-semibold underline decoration-dotted underline-offset-4 px-2 uppercase">{num(gisLevel)}</span>
+                  ปัจจุบันปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-2">{workplace}</span>
+                  จังหวัด <span className="font-semibold border-b border-dotted border-black px-2">{province}</span>
+                  ระดับ GIS <span className="font-semibold border-b border-dotted border-black px-2 uppercase">{num(gisLevel)}</span>
                 </p>
                 <p>
                   ได้ปฏิบัติงานในหน่วยบริการหรือหน่วยบริการในเครือข่าย
-                  <span className="font-semibold underline decoration-dotted underline-offset-4 px-3">{num(customYears)}</span> ปี 
-                  <span className="font-semibold underline decoration-dotted underline-offset-4 px-3">{num(customMonths)}</span> เดือน 
-                  <span className="font-semibold underline decoration-dotted underline-offset-4 px-3">{num(customDays || " - ")}</span> วัน (นับถึงวันสิ้นเดือนที่เบิกจ่าย)
-                  ได้รับเงินจำนวน <span className="font-semibold underline decoration-dotted underline-offset-4 px-3">{num(formatNumber(allowanceRate))}</span> บาท
-                  (<span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{bahtText(allowanceRate)}</span>)
+                  <span className="font-semibold border-b border-dotted border-black px-2">{num(customYears)}</span> ปี 
+                  <span className="font-semibold border-b border-dotted border-black px-2">{num(customMonths)}</span> เดือน 
+                  <span className="font-semibold border-b border-dotted border-black px-2">{num(customDays || " - ")}</span> วัน (นับถึงวันสิ้นเดือนที่เบิกจ่าย)
+                  ได้รับเงินจำนวน <span className="font-semibold border-b border-dotted border-black px-2">{num(formatNumber(allowanceRate))}</span> บาท
+                  (<span className="font-semibold border-b border-dotted border-black px-2">{bahtText(allowanceRate)}</span>)
                 </p>
 
-                <p className="font-bold pt-2">
+                <p className="font-bold pt-1.5">
                   โดยมีรายละเอียดการปฏิบัติงาน ดังต่อไปนี้ (เฉพาะสายแพทย์ตอบข้อ 1 ด้วย)
                 </p>
               </div>
 
               {/* Timeline listings (mimicking the 1-6 rules) */}
-              <div className="space-y-2 mt-2 text-justify">
+              <div className="space-y-1.5 mt-2 text-justify text-[14px] leading-snug">
                 {/* Rule 1: Internship (Doctors) */}
                 <div className="pl-6 relative">
                   <span className="absolute left-0 top-0 font-semibold">1.</span>
                   เริ่มฝึกเพิ่มพูนทักษะที่
                   <div className="pl-4 space-y-0.5 mt-0.5 text-black">
-                    <p>รพช. <span className="border-b border-dotted border-black inline-block w-[140px] text-center">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px] text-center">........................</span> ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px] text-center">.....................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px] text-center">.....................</span></p>
-                    <p>รพท./รพศ. <span className="border-b border-dotted border-black inline-block w-[112px] text-center">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px] text-center">........................</span> ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px] text-center">.....................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px] text-center">.....................</span></p>
-                    <p>รวม <span className="border-b border-dotted border-black inline-block w-[40px] text-center">.....</span> ปี <span className="border-b border-dotted border-black inline-block w-[40px] text-center">.....</span> เดือน <span className="border-b border-dotted border-black inline-block w-[40px] text-center">.....</span> วัน (กรณีนี้ให้นับการฝึกที่ รพท./รพศ. เป็นอายุราชการได้)</p>
+                    <p>รพช. <span className="border-b border-dotted border-black inline-block w-[110px] text-center">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[100px] text-center">........................</span> ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span></p>
+                    <p>รพท./รพศ. <span className="border-b border-dotted border-black inline-block w-[100px] text-center">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[100px] text-center">........................</span> ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[80px] text-center">.....................</span></p>
+                    <p>รวม <span className="border-b border-dotted border-black inline-block w-[30px] text-center">.....</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px] text-center">.....</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px] text-center">.....</span> วัน (กรณีนี้ให้นับการฝึกที่ รพท./รพศ. เป็นอายุราชการได้)</p>
                   </div>
                 </div>
 
                 {/* Rule 2: Primary workspace */}
                 <div className="pl-6 relative">
                   <span className="absolute left-0 top-0 font-semibold">2.</span>
-                  ปฏิบัติงานที่ รพศ./รพท./รพช./รพ.สต. <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{workplace}</span> จังหวัด <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{province}</span>
+                  ปฏิบัติงานที่ รพศ./รพท./รพช./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-1.5">{workplace}</span> จังหวัด <span className="font-semibold border-b border-dotted border-black px-1.5">{province}</span>
                   <div className="mt-0.5">
-                    ตั้งแต่วันที่ <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{num(officer.workHistories[0] ? officer.workHistories[0].startDate.split("-")[2] : "11")} {THAI_MONTHS[officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[1]) : 5]} {num(officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[0]) + 543 : 2547)}</span>
-                    ถึงวันที่ <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{num(getDayOfDocDate())} {formattedMonth} {num(selectedYearBE)}</span>
-                    รวม <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{num(customYears)}</span> ปี 
-                    <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{num(customMonths)}</span> เดือน 
-                    <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{num(customDays || " - ")}</span> วัน
+                    ตั้งแต่วันที่ <span className="font-semibold border-b border-dotted border-black px-1.5">{num(officer.workHistories[0] ? officer.workHistories[0].startDate.split("-")[2] : "11")} {THAI_MONTHS[officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[1]) : 5]} {num(officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[0]) + 543 : 2547)}</span>
+                    ถึงวันที่ <span className="font-semibold border-b border-dotted border-black px-1.5">{num(getDayOfDocDate())} {formattedMonth} {num(selectedYearBE)}</span>
+                    รวม <span className="font-semibold border-b border-dotted border-black px-1.5">{num(customYears)}</span> ปี 
+                    <span className="font-semibold border-b border-dotted border-black px-1.5">{num(customMonths)}</span> เดือน 
+                    <span className="font-semibold border-b border-dotted border-black px-1.5">{num(customDays || " - ")}</span> วัน
                   </div>
                 </div>
 
@@ -535,34 +535,34 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                 {[3, 4, 5, 6].map((numVal) => (
                   <div key={numVal} className="pl-6 relative text-black">
                     <span className="absolute left-0 top-0">{numVal}.</span>
-                    ปฏิบัติงานที่ รพศ./รพท./รพช./รพ.สต. <span className="border-b border-dotted border-black inline-block w-[240px]">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px]">........................</span>
+                    ปฏิบัติงานที่ รพศ./รพท./รพช./รพ.สต. <span className="border-b border-dotted border-black inline-block w-[180px]">.......................</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[110px]">........................</span>
                     <div className="mt-0.5">
-                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[140px]">.......................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[140px]">.......................</span> รวม <span className="border-b border-dotted border-black inline-block w-[40px]">...</span> ปี <span className="border-b border-dotted border-black inline-block w-[40px]">...</span> เดือน <span className="border-b border-dotted border-black inline-block w-[40px]">...</span> วัน
+                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">.......................</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">.......................</span> รวม <span className="border-b border-dotted border-black inline-block w-[30px]">...</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px]">...</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px]">...</span> วัน
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Total Summary */}
-              <div className="mt-4 pt-2 border-t border-slate-300">
+              <div className="mt-4 pt-1.5 border-t border-slate-300">
                 <p className="font-semibold">
-                  รวมทั้งสิ้น <span className="underline decoration-dotted underline-offset-4 px-3">{num(customYears)}</span> ปี 
-                  <span className="underline decoration-dotted underline-offset-4 px-3">{num(customMonths)}</span> เดือน 
-                  <span className="underline decoration-dotted underline-offset-4 px-3">{num(customDays || " - ")}</span> วัน
+                  รวมทั้งสิ้น <span className="border-b border-dotted border-black px-3">{num(customYears)}</span> ปี 
+                  <span className="border-b border-dotted border-black px-3">{num(customMonths)}</span> เดือน 
+                  <span className="border-b border-dotted border-black px-3">{num(customDays || " - ")}</span> วัน
                 </p>
-                <p className="text-[13px] text-black mt-1 text-justify leading-snug">
+                <p className="text-[12.5px] text-black mt-0.5 text-justify leading-snug">
                   (กรณีหน่วยงานเรียกเงินคืน ข้าพเจ้ายินดีชดใช้คืนตามจำนวนเงินที่ได้รับมา โดยไม่มีเงื่อนไขใดๆภายใน 15 วัน หลังจากได้รับหนังสือแจ้งจากหน่วยงาน)
                 </p>
               </div>
 
               {/* Signature area */}
-              <div className="mt-6 text-center space-y-3">
+              <div className="mt-5 text-center space-y-2">
                 <p>ข้าพเจ้าขอรับรองว่าข้อมูลดังกล่าวเป็นความจริงทุกประการ</p>
                 
-                <div className="w-[300px] ml-auto space-y-1 mt-4">
+                <div className="w-[280px] ml-auto space-y-0.5 mt-3">
                   <p className="border-b border-dotted border-black pb-0.5 text-black">..................................................</p>
                   <p className="font-semibold">({title} {firstName} {lastName})</p>
-                  <p className="text-[14px] text-black">ตำแหน่ง {position}</p>
+                  <p className="text-[13px] text-black">ตำแหน่ง {position}</p>
                 </div>
               </div>
             </div>
@@ -572,51 +572,51 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
           {/* PAGE 2: ใบสำคัญรับเงิน (รูปที่ ๙) - เบี้ยเลี้ยงเหมาจ่าย */}
           {/* ========================================================== */}
           {(activeFormTab === "all" || activeFormTab === "allowance") && (
-            <div className="print-page text-black leading-[1.5] text-[16px]">
+            <div className="print-page text-black leading-[1.45] text-[15.5px]">
               {/* Title Header */}
-              <div className="text-center mb-4">
+              <div className="text-center mb-3">
                 <h2 className="text-[18px] font-bold">ใบสำคัญรับเงิน (รูปที่ ๙)</h2>
               </div>
 
               {/* Hospital name and Date row */}
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex justify-between items-start mb-3.5">
                 <div>
-                  <span className="font-bold">ที่</span> <span className="underline decoration-dotted underline-offset-4 px-1">{workplace}</span>
+                  <span className="font-bold">ที่</span> <span className="border-b border-dotted border-black px-1.5">{workplace}</span>
                 </div>
                 <div className="text-right">
-                  <span>**วันที่**</span> <span className="underline decoration-dotted underline-offset-4 px-2">{num(getDayOfDocDate())}</span> 
-                  <span>เดือน</span> <span className="underline decoration-dotted underline-offset-4 px-2">{formattedMonth}</span> 
-                  <span>พ.ศ.</span> <span className="underline decoration-dotted underline-offset-4 px-2">{num(selectedYearBE)}</span>
+                  <span>วันที่</span> <span className="border-b border-dotted border-black px-2">{num(getDayOfDocDate())}</span> 
+                  <span>เดือน</span> <span className="border-b border-dotted border-black px-2">{formattedMonth}</span> 
+                  <span>พ.ศ.</span> <span className="border-b border-dotted border-black px-2">{num(selectedYearBE)}</span>
                 </div>
               </div>
 
               {/* Main text descriptor */}
-              <div className="text-justify leading-relaxed mb-4">
+              <div className="text-justify leading-relaxed mb-3.5">
                 <p className="indent-10">
-                  ข้าพเจ้า <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{title} {firstName} {lastName}</span> 
-                  บ้านเลขที่ <span className="underline decoration-dotted underline-offset-4 px-1">{num(houseNo)}</span> 
-                  หมู่ที่ <span className="underline decoration-dotted underline-offset-4 px-1">{num(moo)}</span> 
-                  ตำบล <span className="underline decoration-dotted underline-offset-4 px-1">{subdistrict}</span> 
-                  อำเภอ <span className="underline decoration-dotted underline-offset-4 px-1">{district}</span> 
-                  จังหวัด <span className="underline decoration-dotted underline-offset-4 px-1">{addressProvince}</span> 
-                  ได้รับเงินจาก <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{fundSourceAllowance}</span> อำเภอเดชอุดม จังหวัดอุบลราชธานี ดังรายการต่อไปนี้
+                  ข้าพเจ้า <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName} {lastName}</span> 
+                  บ้านเลขที่ <span className="border-b border-dotted border-black px-1.5">{num(houseNo)}</span> 
+                  หมู่ที่ <span className="border-b border-dotted border-black px-1.5">{num(moo)}</span> 
+                  ตำบล <span className="border-b border-dotted border-black px-1.5">{subdistrict}</span> 
+                  อำเภอ <span className="border-b border-dotted border-black px-1.5">{district}</span> 
+                  จังหวัด <span className="border-b border-dotted border-black px-1.5">{addressProvince}</span> 
+                  ได้รับเงินจาก <span className="font-semibold border-b border-dotted border-black px-2">{fundSourceAllowance}</span> อำเภอเดชอุดม จังหวัดอุบลราชธานี ดังรายการต่อไปนี้
                 </p>
               </div>
 
               {/* Table details */}
-              <table className="w-full border-collapse border border-black text-[15px] mb-8">
+              <table className="w-full border-collapse border border-black text-[14.5px] mb-6">
                 <thead>
                   <tr className="bg-slate-50">
-                    <th className="border border-black py-2 px-4 text-center font-bold w-[70%]">รายการ</th>
-                    <th className="border border-black py-2 px-2 text-center font-bold w-[20%]">บาท</th>
-                    <th className="border border-black py-2 px-2 text-center font-bold w-[10%]">สต.</th>
+                    <th className="border border-black py-1.5 px-4 text-center font-bold w-[70%]">รายการ</th>
+                    <th className="border border-black py-1.5 px-2 text-center font-bold w-[20%]">บาท</th>
+                    <th className="border border-black py-1.5 px-2 text-center font-bold w-[10%]">สต.</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-black p-4 leading-relaxed h-[280px] align-top">
+                    <td className="border border-black p-4 leading-relaxed h-[270px] align-top">
                       - ได้รับเงินค่าตอบแทนเบี้ยเลี้ยงเหมาจ่ายสำหรับเจ้าหน้าที่ที่ปฏิบัติงานในหน่วยบริการสังกัดกระทรวงสาธารณสุขพ.ศ.2566 <br />
-                      ประจำเดือน <span className="font-semibold underline decoration-dotted underline-offset-4 px-1">{formattedMonth}</span> พ.ศ. <span className="font-semibold underline decoration-dotted underline-offset-4 px-1">{num(selectedYearBE)}</span> เป็นเงิน
+                      ประจำเดือน <span className="font-semibold border-b border-dotted border-black px-1">{formattedMonth}</span> พ.ศ. <span className="font-semibold border-b border-dotted border-black px-1">{num(selectedYearBE)}</span> เป็นเงิน
                     </td>
                     <td className="border border-black p-4 align-top text-right font-mono font-bold text-base">
                       {num(formatNumber(allowanceRate))}
@@ -627,13 +627,13 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                   </tr>
                   {/* Total row */}
                   <tr className="bg-slate-50/50">
-                    <td className="border border-black py-2 px-4 font-bold text-left">
+                    <td className="border border-black py-1.5 px-4 font-bold text-left">
                       รวมเงิน (ตัวอักษร) ({bahtText(allowanceRate)})
                     </td>
-                    <td className="border border-black py-2 px-4 text-right font-mono font-bold text-base">
+                    <td className="border border-black py-1.5 px-4 text-right font-mono font-bold text-base">
                       {num(formatNumber(allowanceRate))}
                     </td>
-                    <td className="border border-black py-2 px-2 text-center font-bold">
+                    <td className="border border-black py-1.5 px-2 text-center font-bold">
                       {num("๐๐")}
                     </td>
                   </tr>
@@ -641,16 +641,16 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               </table>
 
               {/* Signatures */}
-              <div className="grid grid-cols-2 gap-8 mt-8 text-center">
-                <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-8 mt-6 text-center text-[14.5px]">
+                <div className="space-y-2">
                   <p className="text-black">..................................................</p>
                   <div>
                     <p className="font-bold">ผู้จ่ายเงิน</p>
-                    <p className="text-xs text-slate-600">( .................................................. )</p>
+                    <p className="text-[13px] text-black">( .................................................. )</p>
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <p className="text-black">..................................................</p>
                   <div>
                     <p className="font-bold">ผู้รับเงิน</p>
@@ -665,50 +665,50 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
           {/* PAGE 3: ใบสำคัญรับเงิน (รูปที่ 9) - พ.ต.ส. */}
           {/* ========================================================== */}
           {(activeFormTab === "all" || activeFormTab === "pts") && (
-            <div className="print-page text-black leading-[1.5] text-[16px]">
+            <div className="print-page text-black leading-[1.45] text-[15.5px]">
               {/* Title Header */}
-              <div className="text-center mb-4">
+              <div className="text-center mb-3">
                 <h2 className="text-[18px] font-bold">ใบสำคัญรับเงิน (รูปที่ 9)</h2>
               </div>
 
               {/* Hospital name and Date row */}
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex justify-between items-start mb-3.5">
                 <div>
-                  <span className="font-bold">ที่</span> <span className="underline decoration-dotted underline-offset-4 px-1">{workplace}</span>
+                  <span className="font-bold">ที่</span> <span className="border-b border-dotted border-black px-1.5">{workplace}</span>
                 </div>
                 <div className="text-right">
-                  <span>**วันที่**</span> <span className="underline decoration-dotted underline-offset-4 px-2">{num(getDayOfDocDate())}</span> 
-                  <span>เดือน</span> <span className="underline decoration-dotted underline-offset-4 px-2">{formattedMonth}</span> 
-                  <span>พ.ศ.</span> <span className="underline decoration-dotted underline-offset-4 px-2">{num(selectedYearBE)}</span>
+                  <span>วันที่</span> <span className="border-b border-dotted border-black px-2">{num(getDayOfDocDate())}</span> 
+                  <span>เดือน</span> <span className="border-b border-dotted border-black px-2">{formattedMonth}</span> 
+                  <span>พ.ศ.</span> <span className="border-b border-dotted border-black px-2">{num(selectedYearBE)}</span>
                 </div>
               </div>
 
               {/* Main text descriptor */}
-              <div className="text-justify leading-relaxed mb-4">
+              <div className="text-justify leading-relaxed mb-3.5">
                 <p className="indent-10">
-                  ข้าพเจ้า <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{title} {firstName} {lastName}</span> 
-                  อยู่บ้านเลขที่ <span className="underline decoration-dotted underline-offset-4 px-1">{num(houseNo)}</span> 
-                  หมู่ <span className="underline decoration-dotted underline-offset-4 px-1">{num(moo)}</span> 
-                  ตำบล <span className="underline decoration-dotted underline-offset-4 px-1">{subdistrict}</span> 
-                  อำเภอ <span className="underline decoration-dotted underline-offset-4 px-1">{district}</span> 
-                  จังหวัด <span className="underline decoration-dotted underline-offset-4 px-1">{addressProvince}</span> 
-                  ได้รับเงินจาก <span className="font-semibold underline decoration-dotted underline-offset-4 px-2">{fundSourcePts}</span> อำเภอเดชอุดม จังหวัดอุบลราชธานี ดังรายการต่อไปนี้
+                  ข้าพเจ้า <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName} {lastName}</span> 
+                  อยู่บ้านเลขที่ <span className="border-b border-dotted border-black px-1.5">{num(houseNo)}</span> 
+                  หมู่ <span className="border-b border-dotted border-black px-1.5">{num(moo)}</span> 
+                  ตำบล <span className="border-b border-dotted border-black px-1.5">{subdistrict}</span> 
+                  อำเภอ <span className="border-b border-dotted border-black px-1.5">{district}</span> 
+                  จังหวัด <span className="border-b border-dotted border-black px-1.5">{addressProvince}</span> 
+                  ได้รับเงินจาก <span className="font-semibold border-b border-dotted border-black px-2">{fundSourcePts}</span> อำเภอเดชอุดม จังหวัดอุบลราชธานี ดังรายการต่อไปนี้
                 </p>
               </div>
 
               {/* Table details */}
-              <table className="w-full border-collapse border border-black text-[15px] mb-8">
+              <table className="w-full border-collapse border border-black text-[14.5px] mb-6">
                 <thead>
                   <tr className="bg-slate-50">
-                    <th className="border border-black py-2 px-4 text-center font-bold w-[70%]">รายการ</th>
-                    <th className="border border-black py-2 px-2 text-center font-bold w-[30%]">จำนวนเงิน</th>
+                    <th className="border border-black py-1.5 px-4 text-center font-bold w-[70%]">รายการ</th>
+                    <th className="border border-black py-1.5 px-2 text-center font-bold w-[30%]">จำนวนเงิน</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-black p-4 leading-relaxed h-[280px] align-top text-justify">
+                    <td className="border border-black p-4 leading-relaxed h-[270px] align-top text-justify">
                       - ได้รับค่าตอบแทนประเภท เงินเพิ่มสำหรับตำแหน่งที่มีเหตุพิเศษของผู้ปฏิบัติงานด้านสาธารณสุข (พ.ต.ส.) <br />
-                      ประจำเดือน <span className="font-semibold underline decoration-dotted underline-offset-4 px-1">{formattedMonth}</span> พ.ศ. <span className="font-semibold underline decoration-dotted underline-offset-4 px-1">{num(selectedYearBE)}</span> เป็นเงิน
+                      ประจำเดือน <span className="font-semibold border-b border-dotted border-black px-1">{formattedMonth}</span> พ.ศ. <span className="font-semibold border-b border-dotted border-black px-1">{num(selectedYearBE)}</span> เป็นเงิน
                     </td>
                     <td className="border border-black p-4 align-top text-right font-mono font-bold text-base">
                       {num(formatNumber(ptsRate))}
@@ -716,10 +716,10 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
                   </tr>
                   {/* Total row formatted like the specific sample */}
                   <tr className="bg-slate-50/50">
-                    <td className="border border-black py-2 px-4 text-left">
+                    <td className="border border-black py-1.5 px-4 text-left">
                       <strong>จำนวนเงิน(ตัวอักษร)</strong> ( <span className="font-semibold">-{bahtText(ptsRate)}-</span> )
                     </td>
-                    <td className="border border-black py-2 px-4 text-right font-mono font-bold text-base">
+                    <td className="border border-black py-1.5 px-4 text-right font-mono font-bold text-base">
                       {num(formatNumber(ptsRate))}
                     </td>
                   </tr>
@@ -727,16 +727,16 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               </table>
 
               {/* Signatures */}
-              <div className="grid grid-cols-2 gap-8 mt-8 text-center">
-                <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-8 mt-6 text-center text-[14.5px]">
+                <div className="space-y-2">
                   <p className="text-black">..................................................</p>
                   <div>
                     <p className="font-bold">ผู้จ่ายเงิน</p>
-                    <p className="text-xs text-slate-600">( .................................................. )</p>
+                    <p className="text-[13px] text-black">( .................................................. )</p>
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <p className="text-black">..................................................</p>
                   <div>
                     <p className="font-bold">ผู้รับเงิน</p>
