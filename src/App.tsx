@@ -73,6 +73,7 @@ export default function App() {
   // Supabase states
   const [dbStatus, setDbStatus] = useState<"not_configured" | "connecting" | "connected" | "error">("connecting");
   const [dbErrorMsg, setDbErrorMsg] = useState<string>("");
+  const [showDbConfig, setShowDbConfig] = useState<boolean>(false);
 
   // Load from Supabase with LocalStorage fallback
   useEffect(() => {
@@ -274,19 +275,19 @@ export default function App() {
         {activeView === "list" && (
           <div className="space-y-6">
             {/* Quick Banner Alert */}
-            <div className="bg-gradient-to-r from-teal-850 to-emerald-800 text-white rounded-2xl p-6 shadow-md shadow-emerald-900/10 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative">
+            <div className="bg-gradient-to-r from-teal-950 via-teal-900 to-emerald-900 text-white rounded-2xl p-6 shadow-md shadow-emerald-900/10 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative border border-teal-800/25">
               <div className="space-y-2 relative z-10">
-                <h2 className="text-xl font-bold font-sans flex items-center gap-2">
+                <h2 className="text-xl font-bold font-sans flex items-center gap-2 text-white">
                   <ClipboardCheck className="w-6 h-6 text-emerald-300" />
                   โปรแกรมพิมพ์เบี้ยเลี้ยงเหมาจ่ายและเงิน พ.ต.ส.
                 </h2>
-                <p className="text-sm text-emerald-100/90 max-w-xl">
+                <p className="text-sm text-emerald-50/95 max-w-xl font-medium leading-relaxed">
                   หมดปัญหาการคำนวณวันสะสมและกรอกแบบฟอร์มแบบเดิม ระบบจะคำนวณอายุราชการ
                   แปลจำนวนเงินเป็นภาษาไทยให้อัตโนมัติ พร้อมส่งออกทางเครื่องพิมพ์หรือเซฟเป็นไฟล์ PDF ได้ทันที
                 </p>
               </div>
               <div className="relative z-10 shrink-0">
-                <div className="bg-white/10 backdrop-blur-md px-4 py-3 rounded-xl border border-white/10 text-xs space-y-1 text-emerald-50">
+                <div className="bg-white/15 backdrop-blur-md px-4 py-3 rounded-xl border border-white/20 text-xs space-y-1 text-white font-semibold shadow-sm">
                   <p>✔ ระบบคำนวณอายุงานอัตโนมัติ</p>
                   <p>✔ ออกแบบเอกสารแบบร่างราชการ</p>
                   <p>✔ ปรับเลขไทย/อารบิกได้เพียงปุ่มเดียว</p>
@@ -298,7 +299,7 @@ export default function App() {
 
             {/* Supabase Integration Helper Guide */}
             <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm space-y-4">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-2.5">
                   <div className="p-2 bg-indigo-50 rounded-xl text-indigo-700">
                     <Database className="w-5 h-5" />
@@ -309,59 +310,69 @@ export default function App() {
                   </div>
                 </div>
                 
-                {isSupabaseConfigured ? (
-                  <span className="bg-emerald-50 text-emerald-800 border border-emerald-100 text-xs font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                    กำหนดค่าคีย์ในระบบแล้ว
-                  </span>
-                ) : (
-                  <span className="bg-amber-50 text-amber-800 border border-amber-100 text-xs font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
-                    ยังไม่ได้เชื่อมต่อระบบคลาวด์
-                  </span>
-                )}
+                <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+                  {isSupabaseConfigured ? (
+                    <span className="bg-emerald-50 text-emerald-800 border border-emerald-100 text-xs font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                      กำหนดค่าคีย์ในระบบแล้ว
+                    </span>
+                  ) : (
+                    <span className="bg-amber-50 text-amber-800 border border-amber-100 text-xs font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+                      <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+                      ยังไม่ได้เชื่อมต่อระบบคลาวด์
+                    </span>
+                  )}
+                  <button
+                    onClick={() => setShowDbConfig(!showDbConfig)}
+                    className="text-xs bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 transition flex items-center gap-1 cursor-pointer"
+                  >
+                    {showDbConfig ? "ซ่อนขั้นตอน ▴" : "แสดงขั้นตอน ▾"}
+                  </button>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div className="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                  <p className="font-semibold text-slate-800 flex items-center gap-1.5">
-                    <span className="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">1</span>
-                    ขั้นตอนการตั้งค่า Environment Variables
-                  </p>
-                  <ol className="list-decimal list-inside space-y-1 text-slate-600 pl-1">
-                    <li>เปิดเมนู <strong>Settings</strong> ของหน้าต่าง AI Studio</li>
-                    <li>เพิ่มตัวแปรลับ (Secrets) สองตัวดังนี้:</li>
-                    <li className="list-none pl-3 font-mono text-[10px] text-indigo-700">
-                      • <code className="bg-slate-200/65 px-1 py-0.5 rounded">VITE_SUPABASE_URL</code><br/>
-                      • <code className="bg-slate-200/65 px-1 py-0.5 rounded">VITE_SUPABASE_ANON_KEY</code>
-                    </li>
-                    <li>เมื่อใส่คีย์เสร็จแล้ว ระบบจะรีสตาร์ทและเชื่อมต่อฐานข้อมูลอัตโนมัติ!</li>
-                  </ol>
-                </div>
-
-                <div className="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between">
-                  <div>
+              {showDbConfig && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs pt-4 border-t border-slate-100 animate-in fade-in duration-200">
+                  <div className="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-100">
                     <p className="font-semibold text-slate-800 flex items-center gap-1.5">
-                      <span className="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">2</span>
-                      สคริปต์สร้างตาราง SQL Schema
+                      <span className="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">1</span>
+                      ขั้นตอนการตั้งค่า Environment Variables
                     </p>
-                    <p className="text-slate-600 pl-5 mt-1 leading-relaxed">
-                      คุณสามารถคัดลอกไฟล์สคริปต์ SQL ของเราไปวางในช่อง <strong>SQL Editor</strong> ของหน้าเว็บ Supabase เพื่อสร้างตาราง <code>officers</code> และเปิดใช้งาน Row Level Security (RLS) ได้ในคลิกเดียว
-                    </p>
+                    <ol className="list-decimal list-inside space-y-1 text-slate-600 pl-1">
+                      <li>เปิดเมนู <strong>Settings</strong> ของหน้าต่าง AI Studio</li>
+                      <li>เพิ่มตัวแปรลับ (Secrets) สองตัวดังนี้:</li>
+                      <li className="list-none pl-3 font-mono text-[10px] text-indigo-700">
+                        • <code className="bg-slate-200/65 px-1 py-0.5 rounded">VITE_SUPABASE_URL</code><br/>
+                        • <code className="bg-slate-200/65 px-1 py-0.5 rounded">VITE_SUPABASE_ANON_KEY</code>
+                      </li>
+                      <li>เมื่อใส่คีย์เสร็จแล้ว ระบบจะรีสตาร์ทและเชื่อมต่อฐานข้อมูลอัตโนมัติ!</li>
+                    </ol>
                   </div>
-                  <div className="pt-2 pl-5">
-                    <a
-                      href="/supabase_schema.sql"
-                      target="_blank"
-                      download="supabase_schema.sql"
-                      className="inline-flex items-center gap-1.5 text-indigo-700 hover:text-indigo-900 font-semibold underline"
-                    >
-                      <FileCode className="w-4 h-4" />
-                      เปิดดูไฟล์สคริปต์ SQL โครงสร้างฐานข้อมูล 🗄️
-                    </a>
+
+                  <div className="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between">
+                    <div>
+                      <p className="font-semibold text-slate-800 flex items-center gap-1.5">
+                        <span className="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">2</span>
+                        สคริปต์สร้างตาราง SQL Schema
+                      </p>
+                      <p className="text-slate-600 pl-5 mt-1 leading-relaxed">
+                        คุณสามารถคัดลอกไฟล์สคริปต์ SQL ของเราไปวางในช่อง <strong>SQL Editor</strong> ของหน้าเว็บ Supabase เพื่อสร้างตาราง <code>officers</code> และเปิดใช้งาน Row Level Security (RLS) ได้ในคลิกเดียว
+                      </p>
+                    </div>
+                    <div className="pt-2 pl-5">
+                      <a
+                        href="/supabase_schema.sql"
+                        target="_blank"
+                        download="supabase_schema.sql"
+                        className="inline-flex items-center gap-1.5 text-indigo-700 hover:text-indigo-900 font-semibold underline"
+                      >
+                        <FileCode className="w-4 h-4" />
+                        เปิดดูไฟล์สคริปต์ SQL โครงสร้างฐานข้อมูล 🗄️
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <OfficerList
