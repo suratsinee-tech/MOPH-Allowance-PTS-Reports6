@@ -100,6 +100,14 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
   const formattedMonth = THAI_MONTHS[selectedMonth];
   const formattedYear = selectedYearBE.toString();
 
+  const displayWorkplace = (() => {
+    if (!workplace) return "";
+    if (workplace.includes("สมเด็จพระยุพราช") && !workplace.includes("โรงพยาบาล") && !workplace.includes("รพ.")) {
+      return `โรงพยาบาล${workplace}`;
+    }
+    return workplace;
+  })();
+
   // Address text builder
   const addressText = `บ้านเลขที่ ${houseNo} หมู่ที่ ${moo} ตำบล${subdistrict} อำเภอ${district} จังหวัด${addressProvince}`;
 
@@ -487,24 +495,24 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               </div>
  
               {/* Personal info paragraph */}
-              <div className="space-y-1.5 text-justify">
+              <div className="space-y-1 text-justify leading-relaxed">
                 <p className="indent-8">
-                  ข้าพเจ้า ชื่อ <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName}</span>
-                  นามสกุล <span className="font-semibold border-b border-dotted border-black px-2">{lastName}</span>
-                  ตำแหน่ง <span className="font-semibold border-b border-dotted border-black px-2">{position}</span>
+                  ข้าพเจ้า ชื่อ <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{title} {firstName}</span>&nbsp;
+                  นามสกุล <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{lastName}</span>&nbsp;
+                  ตำแหน่ง <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{position}</span>
                 </p>
                 <p>
-                  ปัจจุบันปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-2">{workplace}</span>
-                  จังหวัด <span className="font-semibold border-b border-dotted border-black px-2">{province}</span>
-                  ระดับ GIS <span className="font-semibold border-b border-dotted border-black px-2 uppercase">{num(gisLevel)}</span>
+                  ปัจจุบันปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{displayWorkplace}</span>&nbsp;
+                  จังหวัด <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{province}</span>&nbsp;
+                  ระดับ GIS <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap uppercase">{num(gisLevel)}</span>
                 </p>
                 <p>
-                  ได้ปฏิบัติงานในหน่วยบริการหรือหน่วยบริการในเครือข่าย
-                  <span className="font-semibold border-b border-dotted border-black px-2">{num(customYears)}</span> ปี 
-                  <span className="font-semibold border-b border-dotted border-black px-2">{num(customMonths)}</span> เดือน 
-                  <span className="font-semibold border-b border-dotted border-black px-2">{num(customDays || " - ")}</span> วัน (นับถึงวันสิ้นเดือนที่เบิกจ่าย)
-                  ได้รับเงินจำนวน <span className="font-semibold border-b border-dotted border-black px-2">{num(formatNumber(allowanceRate))}</span> บาท
-                  (<span className="font-semibold border-b border-dotted border-black px-2">{bahtText(allowanceRate)}</span>)
+                  ได้ปฏิบัติงานในหน่วยบริการหรือหน่วยบริการในเครือข่าย&nbsp;
+                  <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(customYears)}</span> ปี&nbsp;
+                  <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(customMonths)}</span> เดือน&nbsp;
+                  <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(customDays || " - ")}</span> วัน (นับถึงวันสิ้นเดือนที่เบิกจ่าย)&nbsp;
+                  ได้รับเงินจำนวน <span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{num(formatNumber(allowanceRate))}</span> บาท&nbsp;
+                  (<span className="font-semibold border-b border-dotted border-black px-2 inline-block whitespace-nowrap">{bahtText(allowanceRate)}</span>)
                 </p>
  
                 <p className="font-bold pt-0.5">
@@ -515,49 +523,50 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               {/* Timeline listings (mimicking the 1-6 rules) */}
               <div className="space-y-1.5 mt-2 text-justify text-[13.5px] leading-[1.4]">
                 {/* Rule: Internship (Doctors) - Unnumbered */}
-                <div className="text-black pl-0">
+                <div className="text-black pl-0 leading-relaxed">
                   เริ่มฝึกเพิ่มพูนทักษะที่
                   <div className="pl-6 space-y-0.5 mt-0.5 text-black">
                     <p>
-                      รพช. <span className="border-b border-dotted border-black inline-block w-[140px]">&nbsp;</span> 
-                      จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px]">&nbsp;</span> 
+                      รพช. <span className="border-b border-dotted border-black inline-block w-[180px]">&nbsp;</span> 
+                      จังหวัด <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span> 
                       ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span> 
                       ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span>
                     </p>
                     <p>
-                      รพท./รพศ. <span className="border-b border-dotted border-black inline-block w-[130px]">&nbsp;</span> 
-                      จังหวัด <span className="border-b border-dotted border-black inline-block w-[120px]">&nbsp;</span> 
+                      รพท./รพศ. <span className="border-b border-dotted border-black inline-block w-[170px]">&nbsp;</span> 
+                      จังหวัด <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span> 
                       ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span> 
                       ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span>
                     </p>
                     <p>
-                      รวม <span className="border-b border-dotted border-black inline-block w-[40px] text-center">&nbsp;</span> ปี 
-                      <span className="border-b border-dotted border-black inline-block w-[40px] text-center">&nbsp;</span> เดือน 
-                      <span className="border-b border-dotted border-black inline-block w-[40px] text-center">&nbsp;</span> วัน (กรณีนี้ให้นับการฝึกที่ รพท./รพศ. เป็นอายุราชการได้)
+                      รวม <span className="border-b border-dotted border-black inline-block w-[30px] text-center">&nbsp;</span> ปี 
+                      <span className="border-b border-dotted border-black inline-block w-[30px] text-center">&nbsp;</span> เดือน 
+                      <span className="border-b border-dotted border-black inline-block w-[30px] text-center">&nbsp;</span> วัน (กรณีนี้ให้นับการฝึกที่ รพท./รพศ. เป็นอายุราชการได้)
                     </p>
                   </div>
                 </div>
  
                 {/* Rule 1: Primary workspace */}
-                <div className="pl-6 relative">
+                <div className="pl-6 relative leading-relaxed">
                   <span className="absolute left-0 top-0 font-semibold">1.</span>
-                  ปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-1.5">{workplace}</span> จังหวัด <span className="font-semibold border-b border-dotted border-black px-1.5">{province}</span>
+                  ปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{displayWorkplace}</span>&nbsp;
+                  จังหวัด <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{province}</span>
                   <div className="mt-0.5">
-                    ตั้งแต่วันที่ <span className="font-semibold border-b border-dotted border-black px-1.5">{num(officer.workHistories[0] ? officer.workHistories[0].startDate.split("-")[2] : "11")} {THAI_MONTHS[officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[1]) : 5]} {num(officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[0]) + 543 : 2547)}</span>
-                    ถึงวันที่ <span className="font-semibold border-b border-dotted border-black px-1.5">{num(getDayOfDocDate())} {formattedMonth} {num(selectedYearBE)}</span>
-                    รวม <span className="font-semibold border-b border-dotted border-black px-1.5">{num(customYears)}</span> ปี 
-                    <span className="font-semibold border-b border-dotted border-black px-1.5">{num(customMonths)}</span> เดือน 
-                    <span className="font-semibold border-b border-dotted border-black px-1.5">{num(customDays || " - ")}</span> วัน
+                    ตั้งแต่วันที่ <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(officer.workHistories[0] ? officer.workHistories[0].startDate.split("-")[2] : "11")} {THAI_MONTHS[officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[1]) : 5]} {num(officer.workHistories[0] ? parseInt(officer.workHistories[0].startDate.split("-")[0]) + 543 : 2547)}</span>&nbsp;
+                    ถึงวันที่ <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(getDayOfDocDate())} {formattedMonth} {num(selectedYearBE)}</span>&nbsp;
+                    รวม <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(customYears)}</span> ปี&nbsp;
+                    <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(customMonths)}</span> เดือน&nbsp;
+                    <span className="font-semibold border-b border-dotted border-black px-1.5 inline-block whitespace-nowrap">{num(customDays || " - ")}</span> วัน
                   </div>
                 </div>
  
                 {/* Rules 2 - 5: Left empty as placeholder underlines just like the standard format */}
                 {[2, 3, 4, 5].map((numVal) => (
-                  <div key={numVal} className="pl-6 relative text-black">
+                  <div key={numVal} className="pl-6 relative text-black leading-relaxed">
                     <span className="absolute left-0 top-0">{numVal}.</span>
                     ปฏิบัติงานที่ รพศ./รพท./รพ./รพ.สต. <span className="border-b border-dotted border-black inline-block w-[180px]">&nbsp;</span> จังหวัด <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span>
                     <div className="mt-0.5">
-                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[110px]">&nbsp;</span> รวม <span className="border-b border-dotted border-black inline-block w-[30px]">&nbsp;</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px]">&nbsp;</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px]">&nbsp;</span> วัน
+                      ตั้งแต่วันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span> ถึงวันที่ <span className="border-b border-dotted border-black inline-block w-[100px]">&nbsp;</span> รวม <span className="border-b border-dotted border-black inline-block w-[30px] text-center">&nbsp;</span> ปี <span className="border-b border-dotted border-black inline-block w-[30px] text-center">&nbsp;</span> เดือน <span className="border-b border-dotted border-black inline-block w-[30px] text-center">&nbsp;</span> วัน
                     </div>
                   </div>
                 ))}
@@ -601,7 +610,7 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               {/* Hospital name and Date row */}
               <div className="flex justify-between items-start mb-3.5">
                 <div>
-                  <span className="font-bold">ที่</span> <span className="border-b border-dotted border-black px-1.5">{workplace}</span>
+                  <span className="font-bold">ที่</span> <span className="border-b border-dotted border-black px-1.5">{displayWorkplace}</span>
                 </div>
                 <div className="text-right">
                   <span>วันที่</span> <span className="border-b border-dotted border-black px-2">{num(getDayOfDocDate())}</span> 
@@ -613,12 +622,12 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               {/* Main text descriptor */}
               <div className="text-justify leading-relaxed mb-3.5">
                 <p className="indent-10">
-                  ข้าพเจ้า <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName} {lastName}</span> 
-                  บ้านเลขที่ <span className="border-b border-dotted border-black px-1.5">{num(houseNo)}</span> 
-                  หมู่ที่ <span className="border-b border-dotted border-black px-1.5">{num(moo)}</span> 
-                  ตำบล <span className="border-b border-dotted border-black px-1.5">{subdistrict}</span> 
-                  อำเภอ <span className="border-b border-dotted border-black px-1.5">{district}</span> 
-                  จังหวัด <span className="border-b border-dotted border-black px-1.5">{addressProvince}</span> 
+                  <span className="inline-block whitespace-nowrap">ข้าพเจ้า <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName} {lastName}</span></span> 
+                  <span className="inline-block whitespace-nowrap">บ้านเลขที่ <span className="border-b border-dotted border-black px-1.5">{num(houseNo)}</span></span> 
+                  <span className="inline-block whitespace-nowrap">หมู่ที่ <span className="border-b border-dotted border-black px-1.5">{num(moo)}</span></span> 
+                  <span className="inline-block whitespace-nowrap">ตำบล <span className="border-b border-dotted border-black px-1.5">{subdistrict}</span></span> 
+                  <span className="inline-block whitespace-nowrap">อำเภอ <span className="border-b border-dotted border-black px-1.5">{district}</span></span> 
+                  <span className="inline-block whitespace-nowrap">จังหวัด <span className="border-b border-dotted border-black px-1.5">{addressProvince}</span></span> 
                   ได้รับเงินจาก <span className="font-semibold border-b border-dotted border-black px-2">{fundSourceAllowance}</span> อำเภอเดชอุดม จังหวัดอุบลราชธานี ดังรายการต่อไปนี้
                 </p>
               </div>
@@ -694,7 +703,7 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               {/* Hospital name and Date row */}
               <div className="flex justify-between items-start mb-3.5">
                 <div>
-                  <span className="font-bold">ที่</span> <span className="border-b border-dotted border-black px-1.5">{workplace}</span>
+                  <span className="font-bold">ที่</span> <span className="border-b border-dotted border-black px-1.5">{displayWorkplace}</span>
                 </div>
                 <div className="text-right">
                   <span>วันที่</span> <span className="border-b border-dotted border-black px-2">{num(getDayOfDocDate())}</span> 
@@ -706,12 +715,12 @@ export default function ReportPreview({ officer, onBack }: ReportPreviewProps) {
               {/* Main text descriptor */}
               <div className="text-justify leading-relaxed mb-3.5">
                 <p className="indent-10">
-                  ข้าพเจ้า <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName} {lastName}</span> 
-                  อยู่บ้านเลขที่ <span className="border-b border-dotted border-black px-1.5">{num(houseNo)}</span> 
-                  หมู่ <span className="border-b border-dotted border-black px-1.5">{num(moo)}</span> 
-                  ตำบล <span className="border-b border-dotted border-black px-1.5">{subdistrict}</span> 
-                  อำเภอ <span className="border-b border-dotted border-black px-1.5">{district}</span> 
-                  จังหวัด <span className="border-b border-dotted border-black px-1.5">{addressProvince}</span> 
+                  <span className="inline-block whitespace-nowrap">ข้าพเจ้า <span className="font-semibold border-b border-dotted border-black px-2">{title} {firstName} {lastName}</span></span> 
+                  <span className="inline-block whitespace-nowrap">อยู่บ้านเลขที่ <span className="border-b border-dotted border-black px-1.5">{num(houseNo)}</span></span> 
+                  <span className="inline-block whitespace-nowrap">หมู่ <span className="border-b border-dotted border-black px-1.5">{num(moo)}</span></span> 
+                  <span className="inline-block whitespace-nowrap">ตำบล <span className="border-b border-dotted border-black px-1.5">{subdistrict}</span></span> 
+                  <span className="inline-block whitespace-nowrap">อำเภอ <span className="border-b border-dotted border-black px-1.5">{district}</span></span> 
+                  <span className="inline-block whitespace-nowrap">จังหวัด <span className="border-b border-dotted border-black px-1.5">{addressProvince}</span></span> 
                   ได้รับเงินจาก <span className="font-semibold border-b border-dotted border-black px-2">{fundSourcePts}</span> อำเภอเดชอุดม จังหวัดอุบลราชธานี ดังรายการต่อไปนี้
                 </p>
               </div>
